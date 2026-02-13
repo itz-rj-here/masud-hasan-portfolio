@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import profilePhoto from "@/assets/profile-photo.jpg";
 
 const AboutSection = () => {
   const ref = useRef(null);
@@ -21,7 +22,28 @@ const AboutSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Profile Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="flex justify-center md:justify-start"
+          >
+            <div className="relative">
+              <div className="w-56 h-56 md:w-full md:h-auto md:aspect-square rounded-3xl overflow-hidden ring-4 ring-primary/20">
+                <img
+                  src={profilePhoto}
+                  alt="Masud Hasan - ICT Educator"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-3 -right-3 w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-primary-foreground font-display font-bold text-xl shadow-lg">
+                MH
+              </div>
+            </div>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
