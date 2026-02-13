@@ -13,8 +13,8 @@ const AboutSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+          transition={{ duration: 0.6 }}>
+
           <span className="m3-chip mb-4">About Me</span>
           <h2 className="text-3xl sm:text-4xl font-display font-bold text-foreground mt-4 mb-8">
             Passionate Educator &<br />
@@ -28,19 +28,19 @@ const AboutSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="flex justify-center md:justify-start"
-          >
+            className="flex justify-center md:justify-start">
+
             <div className="relative">
               <div className="w-56 h-56 md:w-full md:h-auto md:aspect-square rounded-3xl overflow-hidden ring-4 ring-primary/20">
                 <img
                   src={profilePhoto}
                   alt="Masud Hasan - ICT Educator"
-                  className="w-full h-full object-cover"
-                />
+                  className="w-full h-full object-cover" />
+
               </div>
-              <div className="absolute -bottom-3 -right-3 w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-primary-foreground font-display font-bold text-xl shadow-lg">
-                MH
-              </div>
+              
+
+
             </div>
           </motion.div>
 
@@ -48,8 +48,8 @@ const AboutSection = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="m3-surface-elevated p-8"
-          >
+            className="m3-surface-elevated p-8">
+
             <p className="text-foreground/80 leading-relaxed text-lg mb-4">
               I am an ICT educator, digital content creator, and criminologist based in Dhaka, Bangladesh. 
               With years of experience in teaching and online education, I'm dedicated to making technology 
@@ -65,21 +65,21 @@ const AboutSection = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col gap-4"
-          >
+            className="flex flex-col gap-4">
+
             {[
-              { label: "Role", value: "Lecturer & Digital Educator" },
-              { label: "Location", value: "Dhaka, Bangladesh" },
-              { label: "Focus", value: "ICT & Educational Technology" },
-              { label: "Passion", value: "Making education accessible" },
-            ].map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
-                className="m3-surface p-5 flex items-center gap-4"
-              >
+            { label: "Role", value: "Lecturer & Digital Educator" },
+            { label: "Location", value: "Dhaka, Bangladesh" },
+            { label: "Focus", value: "ICT & Educational Technology" },
+            { label: "Passion", value: "Making education accessible" }].
+            map((item, i) =>
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
+              className="m3-surface p-5 flex items-center gap-4">
+
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                   <span className="text-primary font-display font-bold text-sm">
                     {item.label.slice(0, 2).toUpperCase()}
@@ -90,12 +90,12 @@ const AboutSection = () => {
                   <p className="text-foreground font-medium">{item.value}</p>
                 </div>
               </motion.div>
-            ))}
+            )}
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default AboutSection;
