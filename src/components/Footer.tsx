@@ -25,6 +25,17 @@ const Footer = () => (
         © {new Date().getFullYear()} Masud Hasan. Built with
         <Heart size={14} className="text-accent fill-accent" />
       </p>
+      <p className="text-xs text-muted-foreground">
+        Website created by{" "}
+        <a
+          href="https://github.com/itz-rj-here"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline font-medium"
+        >
+          itzrjhere
+        </a>
+      </p>
     </div>
   </footer>
 );

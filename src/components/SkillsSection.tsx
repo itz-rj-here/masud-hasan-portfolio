@@ -3,11 +3,11 @@ import { useRef } from "react";
 import { Monitor, Video, Cpu, Palette, Scale } from "lucide-react";
 
 const skills = [
-  { name: "ICT Teaching", icon: Monitor, level: 95 },
-  { name: "Online Education", icon: Video, level: 90 },
-  { name: "Educational Technology", icon: Cpu, level: 92 },
-  { name: "Digital Content Creation", icon: Palette, level: 88 },
-  { name: "Criminology", icon: Scale, level: 85 },
+  { name: "ICT Teaching", icon: Monitor, level: 95, description: "Curriculum design & classroom instruction" },
+  { name: "Online Education", icon: Video, level: 90, description: "E-learning platforms & virtual teaching" },
+  { name: "Educational Technology", icon: Cpu, level: 92, description: "EdTech tools & digital integration" },
+  { name: "Digital Content Creation", icon: Palette, level: 88, description: "Video production & digital media" },
+  { name: "Criminology", icon: Scale, level: 85, description: "Criminal justice research & analysis" },
 ];
 
 const SkillsSection = () => {
@@ -29,31 +29,66 @@ const SkillsSection = () => {
           </h2>
         </motion.div>
 
-        <div className="max-w-2xl mx-auto flex flex-col gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {skills.map((skill, i) => {
             const Icon = skill.icon;
             return (
               <motion.div
                 key={skill.name}
-                initial={{ opacity: 0, x: -30 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                className="m3-surface-elevated p-5"
+                className="m3-surface-elevated p-6 group hover:scale-[1.02] transition-transform"
               >
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Icon className="text-primary" size={20} />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <Icon className="text-primary" size={24} />
                   </div>
-                  <span className="font-display font-bold text-foreground flex-1">{skill.name}</span>
-                  <span className="text-sm text-muted-foreground font-medium">{skill.level}%</span>
+                  <div>
+                    <h3 className="font-display font-bold text-foreground">{skill.name}</h3>
+                    <p className="text-xs text-muted-foreground">{skill.description}</p>
+                  </div>
                 </div>
-                <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={isInView ? { width: `${skill.level}%` } : {}}
-                    transition={{ duration: 1, delay: 0.5 + i * 0.1, ease: "easeOut" }}
-                    className="h-full bg-primary rounded-full"
-                  />
+
+                {/* Circular progress */}
+                <div className="flex items-center gap-4">
+                  <div className="relative w-16 h-16 shrink-0">
+                    <svg className="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
+                      <circle
+                        cx="32" cy="32" r="28"
+                        fill="none"
+                        stroke="hsl(var(--secondary))"
+                        strokeWidth="5"
+                      />
+                      <motion.circle
+                        cx="32" cy="32" r="28"
+                        fill="none"
+                        stroke="hsl(var(--primary))"
+                        strokeWidth="5"
+                        strokeLinecap="round"
+                        strokeDasharray={2 * Math.PI * 28}
+                        initial={{ strokeDashoffset: 2 * Math.PI * 28 }}
+                        animate={isInView ? { strokeDashoffset: 2 * Math.PI * 28 * (1 - skill.level / 100) } : {}}
+                        transition={{ duration: 1.2, delay: 0.4 + i * 0.15, ease: "easeOut" }}
+                      />
+                    </svg>
+                    <span className="absolute inset-0 flex items-center justify-center text-sm font-display font-bold text-foreground">
+                      {skill.level}%
+                    </span>
+                  </div>
+
+                  {/* Linear bar */}
+                  <div className="flex-1">
+                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={isInView ? { width: `${skill.level}%` } : {}}
+                        transition={{ duration: 1, delay: 0.5 + i * 0.1, ease: "easeOut" }}
+                        className="h-full bg-primary rounded-full"
+                      />
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1">Proficiency</p>
+                  </div>
                 </div>
               </motion.div>
             );
