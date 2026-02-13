@@ -22,43 +22,36 @@ const AboutSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Profile Image */}
+        <div className="grid md:grid-cols-3 gap-8 items-start">
+          {/* Profile Image + Description */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="flex justify-center md:justify-start">
-
-            <div className="relative">
-              <div className="w-56 h-56 md:w-full md:h-auto md:aspect-square rounded-3xl overflow-hidden ring-4 ring-primary/20">
-                <img
-                  src={profilePhoto}
-                  alt="Masud Hasan - ICT Educator"
-                  className="w-full h-full object-cover" />
-
+            className="md:col-span-2">
+            <div className="m3-surface-elevated p-6 sm:p-8 flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start">
+              <div className="relative shrink-0">
+                <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-3xl overflow-hidden ring-4 ring-primary/20 shadow-lg">
+                  <img
+                    src={profilePhoto}
+                    alt="Masud Hasan - ICT Educator"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
-              
 
-
+              <div>
+                <p className="text-foreground/80 leading-relaxed text-base sm:text-lg mb-4">
+                  I am an ICT educator, digital content creator, and criminologist based in Dhaka, Bangladesh.
+                  With years of experience in teaching and online education, I'm dedicated to making technology
+                  education accessible and engaging for students across the country.
+                </p>
+                <p className="text-foreground/80 leading-relaxed text-base sm:text-lg">
+                  As the Head of ICT Department at Bangladesh International School & College and an instructor
+                  at 10 Minute School, I bridge the gap between traditional education and modern digital learning.
+                </p>
+              </div>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="m3-surface-elevated p-8">
-
-            <p className="text-foreground/80 leading-relaxed text-lg mb-4">
-              I am an ICT educator, digital content creator, and criminologist based in Dhaka, Bangladesh. 
-              With years of experience in teaching and online education, I'm dedicated to making technology 
-              education accessible and engaging for students across the country.
-            </p>
-            <p className="text-foreground/80 leading-relaxed text-lg">
-              As the Head of ICT Department at Bangladesh International School & College and an instructor 
-              at 10 Minute School, I bridge the gap between traditional education and modern digital learning.
-            </p>
           </motion.div>
 
           <motion.div
