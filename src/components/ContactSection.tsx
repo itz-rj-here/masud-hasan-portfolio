@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Send, Mail, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import { socialLinks } from "@/lib/socials";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -54,6 +55,25 @@ const ContactSection = () => {
                 <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Location</p>
                 <p className="text-foreground font-medium">Dhaka, Bangladesh</p>
               </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-3 mt-2">
+              {socialLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.label}
+                    className="w-11 h-11 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  >
+                    <Icon size={20} />
+                  </a>
+                );
+              })}
             </div>
 
             <p className="text-muted-foreground text-sm mt-2">
