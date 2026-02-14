@@ -1,18 +1,53 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Send, Mail, MapPin, Phone } from "lucide-react";
+import { Send, Mail, MapPin, Phone, User, MessageSquare, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { socialLinks } from "@/lib/socials";
+
+const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE"; // Replace with your Web3Forms access key
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message sent! Thank you for reaching out.");
-    setForm({ name: "", email: "", message: "" });
+
+    if (WEB3FORMS_ACCESS_KEY === "YOUR_ACCESS_KEY_HERE") {
+      toast.error("Contact form is not configured yet. Please set up Web3Forms.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: form.name.trim(),
+          email: form.email.trim(),
+          message: form.message.trim(),
+          subject: `Portfolio Contact from ${form.name.trim()}`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        toast.error("Failed to send message. Please try again.");
+      }
+    } catch {
+      toast.error("Something went wrong. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -87,7 +122,7 @@ const ContactSection = () => {
             </div>
 
             <p className="text-muted-foreground text-sm mt-2">
-              Feel free to reach out for collaborations, speaking engagements, 
+              Feel free to reach out for collaborations, speaking engagements,
               or educational partnerships.
             </p>
           </motion.div>
@@ -97,38 +132,65 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="m3-surface-elevated p-6 flex flex-col gap-4"
+            className="m3-surface-elevated p-8 flex flex-col gap-5"
           >
-            <input
-              type="text"
-              placeholder="Your Name"
-              required
-              maxLength={100}
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="m3-input"
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              required
-              maxLength={255}
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="m3-input"
-            />
-            <textarea
-              placeholder="Your Message"
-              required
-              maxLength={1000}
-              rows={4}
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="m3-input resize-none"
-            />
-            <button type="submit" className="m3-filled-button justify-center">
-              <Send size={18} />
-              Send Message
+            <h3 className="text-lg font-display font-bold text-foreground mb-1">
+              Send a Message
+            </h3>
+
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+              <input
+                type="text"
+                placeholder="Your Name"
+                required
+                maxLength={100}
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="m3-input pl-12 w-full"
+                disabled={isLoading}
+              />
+            </div>
+
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+              <input
+                type="email"
+                placeholder="Your Email"
+                required
+                maxLength={255}
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="m3-input pl-12 w-full"
+                disabled={isLoading}
+              />
+            </div>
+
+            <div className="relative">
+              <MessageSquare className="absolute left-4 top-4 text-muted-foreground" size={18} />
+              <textarea
+                placeholder="Your Message"
+                required
+                maxLength={1000}
+                rows={5}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                className="m3-input pl-12 resize-none w-full"
+                disabled={isLoading}
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="m3-filled-button justify-center gap-2 py-3 text-base disabled:opacity-60"
+            >
+              {isLoading ? (
+                <Loader2 size={20} className="animate-spin" />
+              ) : (
+                <Send size={18} />
+              )}
+              {isLoading ? "Sending..." : "Send Message"}
             </button>
           </motion.form>
         </div>
