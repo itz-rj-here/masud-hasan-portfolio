@@ -40,7 +40,7 @@ const SkillsSection = () => {
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                 className="m3-surface-elevated p-6 group hover:scale-[1.02] transition-transform"
               >
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                     <Icon className="text-primary" size={24} />
                   </div>
