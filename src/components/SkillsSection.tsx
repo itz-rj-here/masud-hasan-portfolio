@@ -50,46 +50,6 @@ const SkillsSection = () => {
                   </div>
                 </div>
 
-                {/* Circular progress */}
-                <div className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 shrink-0">
-                    <svg className="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
-                      <circle
-                        cx="32" cy="32" r="28"
-                        fill="none"
-                        stroke="hsl(var(--secondary))"
-                        strokeWidth="5"
-                      />
-                      <motion.circle
-                        cx="32" cy="32" r="28"
-                        fill="none"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="5"
-                        strokeLinecap="round"
-                        strokeDasharray={2 * Math.PI * 28}
-                        initial={{ strokeDashoffset: 2 * Math.PI * 28 }}
-                        animate={isInView ? { strokeDashoffset: 2 * Math.PI * 28 * (1 - skill.level / 100) } : {}}
-                        transition={{ duration: 1.2, delay: 0.4 + i * 0.15, ease: "easeOut" }}
-                      />
-                    </svg>
-                    <span className="absolute inset-0 flex items-center justify-center text-sm font-display font-bold text-foreground">
-                      {skill.level}%
-                    </span>
-                  </div>
-
-                  {/* Linear bar */}
-                  <div className="flex-1">
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : {}}
-                        transition={{ duration: 1, delay: 0.5 + i * 0.1, ease: "easeOut" }}
-                        className="h-full bg-primary rounded-full"
-                      />
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">Proficiency</p>
-                  </div>
-                </div>
               </motion.div>
             );
           })}
