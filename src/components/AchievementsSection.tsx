@@ -1,6 +1,29 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Award, Star } from "lucide-react";
+import { Award, Globe, BookOpen, Users } from "lucide-react";
+
+const achievements = [
+  {
+    icon: Award,
+    title: "ICT4E District Ambassador",
+    description: "Recognized by a2i – Aspire to Innovate for outstanding contributions to ICT education and digital transformation across Bangladesh.",
+  },
+  {
+    icon: Globe,
+    title: "10 Minute School Instructor",
+    description: "Reached millions of students nationwide through online courses and digital content on Bangladesh's largest e-learning platform.",
+  },
+  {
+    icon: BookOpen,
+    title: "PGD in ICT from BUET",
+    description: "Completed a prestigious Post Graduate Diploma in ICT from Bangladesh University of Engineering and Technology (BUET IICT).",
+  },
+  {
+    icon: Users,
+    title: "কিশোর বাতায়ন Lecturer",
+    description: "Serving as an ICT lecturer on the national youth platform, empowering the next generation with digital literacy and skills.",
+  },
+];
 
 const AchievementsSection = () => {
   const ref = useRef(null);
@@ -21,33 +44,33 @@ const AchievementsSection = () => {
           </h2>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-2xl mx-auto m3-surface-high p-8 sm:p-10 text-center relative overflow-hidden"
-        >
-          {/* Decorative glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 bg-accent/10 rounded-full blur-3xl -z-10" />
+        <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {achievements.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                className="m3-surface-high p-6 sm:p-8 text-center relative overflow-hidden group hover:scale-[1.02] transition-transform"
+              >
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-accent/10 rounded-full blur-3xl -z-10" />
 
-          <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-accent/10 flex items-center justify-center">
-            <Award className="text-accent" size={32} />
-          </div>
+                <div className="w-14 h-14 mx-auto mb-5 rounded-2xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <Icon className="text-accent" size={28} />
+                </div>
 
-          <h3 className="text-2xl font-display font-bold text-foreground mb-3">
-            ICT4E District Ambassador
-          </h3>
-          <p className="text-muted-foreground mb-6">
-            Recognized by <strong className="text-foreground">a2i – Aspire to Innovate</strong> for 
-            outstanding contributions to ICT education and digital transformation across Bangladesh.
-          </p>
-
-          <div className="flex items-center justify-center gap-1">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="text-accent fill-accent" size={18} />
-            ))}
-          </div>
-        </motion.div>
+                <h3 className="text-xl font-display font-bold text-foreground mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {item.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
