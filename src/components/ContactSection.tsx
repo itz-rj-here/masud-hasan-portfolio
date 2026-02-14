@@ -80,7 +80,12 @@ const ContactSection = () => {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Email</p>
-                <p className="text-foreground font-medium">masudhasan@email.com</p>
+                <a
+                  href="mailto:masudhasan.mdh@gmail.com"
+                  className="text-foreground font-medium hover:opacity-80"
+                >
+                  masudhasan.mdh@gmail.com
+                </a>
               </div>
             </div>
 
@@ -90,7 +95,12 @@ const ContactSection = () => {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Mobile</p>
-                <p className="text-foreground font-medium">+880 1XXX-XXXXXX</p>
+                <a href="tel:+8801675345286" className="text-foreground font-medium hover:opacity-80 block">
+                  +880 1675-345286
+                </a>
+                <a href="tel:+8801716632755" className="text-foreground font-medium hover:opacity-80 block">
+                  +880 1716-632755
+                </a>
               </div>
             </div>
 

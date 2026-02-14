@@ -5,8 +5,7 @@ const Footer = () => (
     <div className="section-container">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
         <p className="text-sm text-muted-foreground flex items-center gap-1.5 order-2 sm:order-1">
-          © {new Date().getFullYear()} Masud Hasan · Built with
-          <Heart size={14} className="text-accent fill-accent inline-block" aria-hidden />
+          © {new Date().getFullYear()} Masud Hasan · Built with React, Tailwind CSS & Material 3
         </p>
         <a
           href="https://github.com/itz-rj-here"

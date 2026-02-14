@@ -4,6 +4,12 @@ import { Briefcase } from "lucide-react";
 
 const experiences = [
   {
+    title: "Head of ICT Department",
+    org: "Nirjhor Cantonment Public School & College",
+    period: "2019 – Present",
+    current: true,
+  },
+  {
     title: "ICT4E District Ambassador",
     org: "a2i - Aspire to Innovate",
     period: "2020 – Present",
@@ -13,12 +19,6 @@ const experiences = [
     title: "Lecturer in ICT",
     org: "কিশোর বাতায়ন",
     period: "2020 – Present",
-    current: true,
-  },
-  {
-    title: "Head of ICT Department",
-    org: "Bangladesh International School & College, Nirjhor, Dhaka Cantonment",
-    period: "2019 – Present",
     current: true,
   },
   {
