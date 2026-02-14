@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Send, Mail, MapPin } from "lucide-react";
+import { Send, Mail, MapPin, Phone } from "lucide-react";
 import { toast } from "sonner";
 import { socialLinks } from "@/lib/socials";
 
@@ -44,6 +44,16 @@ const ContactSection = () => {
               <div>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Email</p>
                 <p className="text-foreground font-medium">masudhasan@email.com</p>
+              </div>
+            </div>
+
+            <div className="m3-surface-elevated p-6 flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <Phone className="text-primary" size={22} />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Mobile</p>
+                <p className="text-foreground font-medium">+880 1XXX-XXXXXX</p>
               </div>
             </div>
 
