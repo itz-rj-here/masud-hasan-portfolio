@@ -4,7 +4,8 @@ import { Send, Mail, MapPin, Phone, User, MessageSquare, Loader2 } from "lucide-
 import { toast } from "sonner";
 import { socialLinks } from "@/lib/socials";
 
-const WEB3FORMS_ACCESS_KEY = "e6fee1d5-38c2-4495-957e-7843828c4f5f"; // Replace with your Web3Forms access key
+const WEB3FORMS_ACCESS_KEY =
+  import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "e6fee1d5-38c2-4495-957e-7843828c4f5f";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -15,8 +16,8 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (WEB3FORMS_ACCESS_KEY === "e6fee1d5-38c2-4495-957e-7843828c4f5f") {
-      toast.error("Contact form is not configured yet. Please set up Web3Forms.");
+    if (!WEB3FORMS_ACCESS_KEY?.trim()) {
+      toast.error("Contact form is not configured. Please set VITE_WEB3FORMS_ACCESS_KEY.");
       return;
     }
 
@@ -32,6 +33,7 @@ const ContactSection = () => {
           email: form.email.trim(),
           message: form.message.trim(),
           subject: `Portfolio Contact from ${form.name.trim()}`,
+          botcheck: "", // Hidden field for spam protection; leave empty for real users
         }),
       });
 
