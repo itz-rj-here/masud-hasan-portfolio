@@ -4,8 +4,7 @@ import { Send, Mail, MapPin, Phone, User, MessageSquare, Loader2 } from "lucide-
 import { toast } from "sonner";
 import { socialLinks } from "@/lib/socials";
 
-const WEB3FORMS_ACCESS_KEY =
-  import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "e6fee1d5-38c2-4495-957e-7843828c4f5f";
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "";
 
 const ContactSection = () => {
   const ref = useRef(null);
